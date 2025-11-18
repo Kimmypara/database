@@ -3,21 +3,20 @@
 require_once "dbh.php";
 require_once "functions.php";
 
-$result = getUsers($conn);
+$result = getProducts($conn);
 
 while($row = mysqli_fetch_assoc($result)){
     //print_r($row);
    // echo"<br/>";
 
     $id =$row['id'];
-    $username =$row['username'];
-    $password =$row['password'];
     $name =$row['name'];
-    $surname =$row['surname'];
-    $dob =$row['dob'];
+    $description =$row['description'];
+    $qty =$row['qty'];
+    $imageUrl =$row['imageUrl'];
 
    echo "<div class='col'>";
-   echo "<h2>{$username}</h2><h4>{$name} {$surname}<h/4> <p>{$dob}</p>";
+   echo "<h2>{$name}</h2><p>{$description} <p> <h4>{$qty}</h4> <img src='{$imageUrl}' alt=''>";
    echo "</div>";
 }
 

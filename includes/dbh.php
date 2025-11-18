@@ -2,7 +2,7 @@
 
 //This is a database handler
 $server = "localhost";
-$dbName = "first-database";
+$dbName = "shoppingproducts";
 $dbUsername= "root";
 $dbPassword = "";
 
