@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <form action="" method="post">
+            <form action="includes/register-inc.php" method="post">
                 <div class="row">
                     <div class="col">
                         <input type="text" name="username" id="username" placeholder="Username" class="w-100 m-2">
@@ -21,10 +21,10 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input type="text" name="name" id="name" placeholder="First Name" class="w-100 m-2">
+                        <input type="text" name="firstname" id="firstname" placeholder="First Name" class="w-100 m-2">
                     </div>
                     <div class="col">
-                        <input type="text" name="surname" id="surname" placeholder="Last Name" class="w-100 m-2">
+                        <input type="text" name="lastname" id="lastname" placeholder="Last Name" class="w-100 m-2">
                     </div>
                 </div>
                 
@@ -50,15 +50,32 @@
                 </div>
                 <div class="row my-3">
                     <div class="col">
-                        <button class="btn btn-success w-100 m-2" type="submit">Submit</button>
+                        <button class="btn btn-success w-100 m-2" type="submit" name="submit"  id="submit">Submit</button>
                     </div>
                     <div class="col">
-                        <button class="btn btn-danger w-100 m-2" type="reset">Cancel</button>
+                        <button class="btn btn-danger w-100 m-2" type="reset" name="reset"  id="reset">Cancel</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
+    <?php if(isset($_GET["error"])){ 
+        if ($_GET ["error"] == "emptyinput"){
+            $error = "You have some empty fields!";
+        }
+        
+        ?>
+      <div class="row">
+    <div class="col border border-danger text-danger">
+
+    <?php echo $error;?>
+    </div>  
+    </div>
+    
+    <?php
+  }
+    ?>
 </div>
 
 

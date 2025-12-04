@@ -6,7 +6,7 @@
     $username = $user["username"];
     $name = $user["name"];
     $surname = $user["surname"];
-    $age = $user["age"];
+  
 ?>
 
 
@@ -22,7 +22,7 @@
         <div class="col-10">
             <p><b><?php echo $username; ?></b></p>
             <p><?php echo "{$name} {$surname}"; ?></p>
-            <p>Age: <?php echo $age; ?></p>
+            <!--<p>Age: <?php echo $age; ?></p>-->
         </div>
     </div>
 </div>

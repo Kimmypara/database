@@ -66,5 +66,40 @@ function getUser($conn, $userId){
             return false;
         }
     }
+
+    function registerUser($conn, $username, $password, $firstname, $lastname, $age){
+        $sql = "INSERT INTO user (username, password, name, surname,age) 
+        VALUES (?,?,?,?,?) ";
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            header("location: ../register.php?error=stmtfailed");
+            exit();
+        }
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+
+
+        mysqli_stmt_bind_param($stmt, "ssssi", $username, $hashedPassword, $firstname, $lastname, $age);
+
+        mysqli_stmt_execute($stmt);
+         mysqli_stmt_close($stmt);
+
+
+    }
+
+
+    //Validation functions
+    function emptyRegistrationInput($username, $password, $firstname, $lastname, $age){
+        if(empty($username) || empty($password) || empty($firstname) || empty($lastname) || empty($age)){
+            return true;
+        }
+        return false;
+    }
+
+    //we should have a bunch of other functions that check different things 
+    //Ex. Invalid username - maybe we do no want symbols
+    //Invalid password - we can check if pw has numbers, letters, or symbols
+    //
 ?>
 
