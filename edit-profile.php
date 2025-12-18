@@ -1,7 +1,16 @@
 <?php 
-    include "includes/header.php";
+    include "includes/nav.php";
 
-?>
+// print_r($_SESSION["username"]);
+// die();
+
+
+  if(!isset($_SESSION["username"])){
+        header("location: login.php");
+        exit();
+    }
+
+    ?>
 
 <div class="container" style="width:800px;">
     <div class="row">
@@ -11,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <form action="" method="post">
+            <form action="includes/edit-user-inc.php" method="post">
                 <div class="row">
                     <div class="col">
                         <input type="text" name="username" id="username" placeholder="Username" class="w-100 m-2">
@@ -51,18 +60,33 @@
                 </div>
                 <div class="row my-3">
                     <div class="col">
-                        <button class="btn btn-success w-100 m-2" type="submit">Submit</button>
+                        <button class="btn btn-success w-100 m-2" type="submit" name="submit" id="submit">Submit</button>
                     </div>
                     <div class="col">
-                        <button class="btn btn-danger w-100 m-2" type="reset">Cancel</button>
+                        <button class="btn btn-danger w-100 m-2" type="reset" name="reset" id="reset">Cancel</button>
                     </div>
                 </div>
             </form>
+
+            <div class="row">
+                <div class="col">
+                    <form action="includes/delete-user-inc.php" method="post">
+                        <button type="submit" id="deleteAccount" name="deleteAccount">Delete Account</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-
+<div class="row">
+    <div class="col">
+        <form enctype="multipart/form-data"  action="includes/upload-image-inc.php"> 
+        <label for="">Profile Picture</label>
+        <button type="submit" value="upload" name="" id="">Upload</button>
+        </form>
+    </div>
+</div>
 
 
 <?php include "includes/footer.php"; ?>

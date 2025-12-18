@@ -1,6 +1,12 @@
 <?php
    include "includes/nav.php";
     include "includes/user-inc.php";
+
+
+    if(!isset($_SESSION["username"])){
+        header("location: login.php");
+        exit();
+    }
     
     // since we included the user-inc file, we have access to the result of the SQL statement
     $username = $user["username"];

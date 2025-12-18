@@ -144,6 +144,43 @@ function userExists($conn, $username){
     }
 }
 
+function deleteUser($conn, $userId){
+    $sql = "DELETE FROM user WHERE id=?;";
+
+     
+    $stmt = mysqli_stmt_init($conn);
+    
+    if(!mysqli_stmt_prepare($stmt,$sql)){
+        header("location: ../edit-profile.php?error=stmtfailed");
+        exit();
+    }
+    
+    // Here, we replace the ? wildcard with an integer, its value being in the userId variable
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+function editUser($conn, $userId, $username, $password,$firstname, $lastname, $age ){
+    $sql= "UPDATE user SET username = ?, password = ?, name = ?, surname = ?, age =? WHERE id =?;";
+
+ $stmt = mysqli_stmt_init($conn);
+    
+    if(!mysqli_stmt_prepare($stmt,$sql)){
+        header("location: ../edit-profile.php?error=stmtfailed");
+        exit();
+    }
+
+    $hashedPassword= password_hash($password, PASSWORD_DEFAULT);
+    
+    // Here, we replace the ? wildcard with an integer, its value being in the userId variable
+    mysqli_stmt_bind_param($stmt, "ssssii",  $username, $password, $firstname, $lastname, $age, $userId );
+    
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+}
 
 
 //Validation functions
